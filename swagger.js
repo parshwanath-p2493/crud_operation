@@ -227,7 +227,13 @@ const options = {
     apis: ['./index.js'], // Path to the file where the API is defined
 };
 
-
+{
+    {
+        {
+            
+        }
+    }
+}
 const swaggerDocs = swaggerJsDoc(options); // swaggerJsDoc should be called as a function
 
 module.exports = { swaggerDocs }; // This correctly exports the generated Swagger documentation
