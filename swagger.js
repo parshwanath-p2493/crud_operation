@@ -151,72 +151,287 @@ const options = {
                 }
             },
             '/addNewStudent': {
-                tags: ['USER'],
-                summary: ' Get all data from DataBase ',
-                description: 'This API is used to check to get the details of all students',
-                requestbody: {
-                    cntent: {
-                        'application/json': {
-                            schema: {
-                                type: 'object',
-                                properties: {
-                                    name: {
-                                        type: 'string',
-                                        example: 'Smart',
-                                        description: 'First name of the user'
+                post: {
+                    tags: ['USER'],
+                    summary: ' Add  student data to  DataBase ',
+                    description: 'This API is used to add the details of all students',
+                    requestBody: {
+                        cntent: {
+                            'application/json': {
+                                schema: {
+                                    type: 'object',
+                                    properties: {
+                                        name: {
+                                            type: 'string',
+                                            example: 'Smart',
+                                            description: 'First name of the user'
+                                        },
+                                        student_id: {
+                                            type: 'string',
+                                            example: '123',
+                                            description: 'Student ID'
+                                        },
+                                        school_name: {
+                                            type: 'string',
+                                            example: 'ASDFG0',
+                                            description: 'SCHOOL NAME'
+                                        },
+                                        phone_number: {
+                                            type: 'number',
+                                            example: '123456789',
+                                            description: 'Phone number'
+                                        }
                                     },
-                                    student_id: {
-                                        type: 'string',
-                                        example: '123',
-                                        description: 'Student ID'
-                                    },
-                                    school_name: {
-                                        type: 'string',
-                                        example: 'ASDFG0',
-                                        description: 'SCHOOL NAME'
-                                    },
-                                    phone_number: {
-                                        type: 'number',
-                                        example: '123456789',
-                                        description: ''
-                                    }
+                                    required: ['name', 'student_id', 'school_name', 'phone_number']
                                 },
-                                required: ['name', 'student_id', 'school_name', 'phone_number']
-                            },
-                            example: {
-                                first_name: 'Smart',
-                                student_id: '1DA21ET030',
-                                school_name: 'test@gmail.com',
-                                phone_number: 1234567890,
+                                example: {
+                                    first_name: 'Smart',
+                                    student_id: '1DA21ET030',
+                                    school_name: 'test@gmail.com',
+                                    phone_number: 1234567890,
+                                }
                             }
                         }
-                    }
 
-                },
-                responses: {
-                    '201': {
-                        description: 'The API is working',
+                    },
+                    responses: {
+                        '201': {
+                            description: 'The API is working',
                             content: {
                                 'application/json': {
+                                    schema: {
+                                        type: 'object',
+                                        properties: {
+                                            status: {
+                                                type: 'string',
+                                                example: 'Success',
+                                                description: 'New User Successfully created'
+                                            },
+                                            message: {
+                                                type: 'string',
+                                                example: 'New User Successfully created',
+                                                description: 'API success message'
+                                            }
+                                        }
+                                    },
                                     example: {
                                         message: 'Student added  successfully',
                                         data: { message: 'Good Work' }
                                     }
                                 }
                             }
+                        },
+                        '500': {
+                            description: 'Server side error',
+                            content: {
+                                'application/json': {
+                                    message: 'Internal server isssues',
+                                    error: 'Database Error may be error in database'
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+            },
+            '/getStudent/{name}': {
+                get: {
+                    tags: ['USER'],
+                    summary: 'Get a student by name',
+                    description: 'This API retrieves a student\'s details by their name.',
+                    parameters: [
+                        {
+                            name: 'name',
+                            in: 'path',
+                            required: true,
+                            description: 'Name of the student to retrieve',
+                            schema: {
+                                type: 'string',
+                            },
+                        },
+                    ],
+                    responses: {
+                        '200': {
+                            description: 'Student details retrieved successfully',
+                            content: {
+                                'application/json': {
+                                    schema: {
+                                        type: 'object',
+                                        properties: {
+                                            message:
+                                            {
+                                                type: 'string',
+                                                example: 'All Student details'
+                                            },
+                                            data: {
+                                                type: 'array',
+                                                items:
+                                                {
+                                                    type: 'object'
+                                                }
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                        '404': {
+                            description: 'Student not found',
+                        },
+                        '500': {
+                            description: 'Internal Server Error',
+                        },
                     },
-                    '500': {
-                        description: 'Server side error',
+                },
+            },
+            '/updatestudent/{id}': {
+                put: {
+                    tags: ['USER'],
+                    summary: 'Update data Based On User Id',
+                    description: 'This API is used to update user data based on user Id',
+                    parameters: [
+                        {
+                            name: 'id',
+                            in: 'path',
+                            schema: {
+                                type: 'string',
+                                example: '67ac8429120f599aff8f23ee',
+                                description: 'STUDENT ID'
+                            },
+                            required: true,
+                            description: 'User ID parameter'
+                        }
+                    ],
+                    requestBody: {
+                        required: true,
                         content: {
                             'application/json': {
-                                message: 'Internal server isssues',
-                                error: 'Database Error may be error in database'
+                                schema: {
+                                    type: 'object',
+                                    properties: {
+                                        name: {
+                                            type: 'string',
+                                            example: 'Updated First Name',
+                                            description: 'Updated first name of the user'
+                                        },
+                                        student_id: {
+                                            type: 'string',
+                                            example: 'Updated Last Name',
+                                            description: 'Updated student id of the user'
+                                        },
+                                        school_name: {
+                                            type: 'string',
+                                            example: 'updatedemail@example.com',
+                                            description: 'Updated school name of the user'
+                                        },
+                                        phone_number: {
+                                            type: 'number',
+                                            example: 9876543210,
+                                            description: 'Updated mobile number of the user'
+                                        }
+                                    }
+                                }
                             }
                         }
-
+                    },
+                    responses: {
+                        '200': {
+                            description: 'Success',
+                            content: {
+                                'application/json': {
+                                    example: {
+                                        message: 'User updated successfully'
+                                    },
+                                    schema: {
+                                        type: 'object'
+                                    },
+                                    properties: {
+                                        name: {
+                                            type: 'string',
+                                            example: 'Updated First Name',
+                                            description: 'Updated first name of the user'
+                                        },
+                                        student_id: {
+                                            type: 'string',
+                                            example: 'Updated Last Name',
+                                            description: 'Updated student id of the user'
+                                        },
+                                        school_name: {
+                                            type: 'string',
+                                            example: 'updatedemail@example.com',
+                                            description: 'Updated school name of the user'
+                                        },
+                                        phone_number: {
+                                            type: 'number',
+                                            example: 9876543210,
+                                            description: 'Updated mobile number of the user'
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        '404': {
+                            description: 'User not Found',
+                            content: {
+                                'application/json': {
+                                    example: {
+                                        message: 'User not found',
+                                        error: 'User not found'
+                                    }
+                                }
+                            }
+                        },
+                        '500': {
+                            description: 'Server Side Issue',
+                            content: {
+                                'application/json': {
+                                    example: {
+                                        message: 'Internal Server Error',
+                                        error: 'Something went wrong'
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-
+            },
+            '//deletestudent/{id}': {
+                delete: {
+                    tags: ['USER'],
+                    summary: 'Delete a student',
+                    description: 'This API deletes a student by their ID.',
+                    parameters: [
+                        {
+                            name: 'id',
+                            in: 'path',
+                            required: true,
+                            description: 'ID of the student to delete',
+                            schema: {
+                                type: 'string',
+                            },
+                        },
+                    ],
+                    responses: {
+                        '200': {
+                            description: 'Student deleted successfully',
+                            content: {
+                                'application/json': {
+                                    schema: {
+                                        type: 'string',
+                                        example: 'Student deleted successfully',
+                                    },
+                                },
+                            },
+                        },
+                        '404': {
+                            description: 'Student not found',
+                        },
+                        '500': {
+                            description: 'Server error',
+                        },
+                    },
+                },
             }
 
         },
@@ -230,7 +445,7 @@ const options = {
 {
     {
         {
-            
+
         }
     }
 }
