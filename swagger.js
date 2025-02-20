@@ -155,8 +155,25 @@ const options = {
                     tags: ['USER'],
                     summary: ' Add  student data to  DataBase ',
                     description: 'This API is used to add the details of all students',
+                    parameters: [
+                        {
+                            name: 'id',
+                            in: 'path',
+                            required: true,
+                            description: 'ID of the student to delete',
+                            schema: {
+                                type: 'object',
+                                properties: {
+                                    first_name: 'Smart',
+                                    student_id: '1DA21ET030',
+                                    school_name: 'test@gmail.com',
+                                    phone_number: 1234567890,
+                                }
+                            },
+                        },
+                    ],
                     requestBody: {
-                        cntent: {
+                        content: {
                             'application/json': {
                                 schema: {
                                     type: 'object',
