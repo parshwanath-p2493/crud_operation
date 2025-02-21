@@ -8,9 +8,9 @@ const {swaggerDocs}=require("./swagger.js")
 //const { swaggerDocs } = require("./swagger.js");
 //const swaggerUi = require("swagger-ui-express");
 
-
 //middleware 
 server.use(express.json());
+
 //Test Server 
 server.get('/', function (req, res) {
     res.send('Hello World 123456')

@@ -6,7 +6,7 @@ const options = {
     swaggerDefinition: {
         swagger: "2.0",
         //  openapi: "3.0.3",
-        info: {
+        //         info: {
             title: 'Student data  API',
             version: '56.0.0',
             description: 'A simple CRUD API for managing Student data  in a school',
@@ -155,39 +155,29 @@ const options = {
                     tags: ['USER'],
                     summary: ' Add  student data to  DataBase ',
                     description: 'This API is used to add the details of all students',
-                    // parameters: [
-                    //     {
-                    //         name: 'name',
-                    //         in: 'path',
-                    //         required: true,
-                    //         description: 'name of the student to add',
-                    //         schema: {
-                    //             type: 'string'
-                    //             // properties: {
-                    //             //     first_name: 'Smart',
-                    //             //     student_id: '1DA21ET030',
-                    //             //     school_name: 'test@gmail.com',
-                    //             //     phone_number: 1234567890,
-                    //             // }
-                    //         },
-                    //     },
-                    //     {
-                    //         name: 'student_id',
-                    //         in: 'path',
-                    //         required: true,
-                    //         description: 'name of the student to add',
-                    //         schema: {
-                    //             type: 'string'
-                    //         }
-
-                    //     }
-                    // ],
+                    parameters: [
+                        {
+                            name: 'id',
+                           // in: 'path',
+                            required: true,
+                            description: 'ID of the student to delete',
+                            schema: {
+                                type: 'object',
+                                properties: {
+                                    first_name: 'Smart',
+                                    student_id: '1DA21ET030',
+                                    school_name: 'test@gmail.com',
+                                    phone_number: 1234567890,
+                                }
+                            },
+                        },
+                    ],
                     requestBody: {
                         content: {
                             'application/json': {
                                 schema: {
-                                    "type": "object",
-                                    "properties": {
+                                    type: 'object',
+                                    properties: {
                                         name: {
                                             type: 'string',
                                             example: 'Smart',
@@ -206,7 +196,7 @@ const options = {
                                         phone_number: {
                                             type: 'number',
                                             example: '123456789',
-                                            description: ''
+                                            description: 'Phone number'
                                         }
                                     },
                                     required: ['name', 'student_id', 'school_name', 'phone_number']
@@ -229,38 +219,16 @@ const options = {
                                     schema: {
                                         type: 'object',
                                         properties: {
-
-                                            // status: {
-                                            //     type: 'string',
-                                            //     example: 'Success',
-                                            //     description: 'New User Successfully created'
-                                            // },
-                                            // message: {
-                                            //     type: 'string',
-                                            //     example: 'New User Successfully created',
-                                            //     description: 'API success message'
-                                            // }
-                                            name: {
+                                            status: {
                                                 type: 'string',
-                                                example: 'Smart',
-                                                description: 'First name of the user'
+                                                example: 'Success',
+                                                description: 'New User Successfully created'
                                             },
-                                            student_id: {
+                                            message: {
                                                 type: 'string',
-                                                example: '123',
-                                                description: 'Student ID'
-                                            },
-                                            school_name: {
-                                                type: 'string',
-                                                example: 'ASDFG0',
-                                                description: 'SCHOOL NAME'
-                                            },
-                                            phone_number: {
-                                                type: 'number',
-                                                example: '123456789',
-                                                description: ''
+                                                example: 'New User Successfully created',
+                                                description: 'API success message'
                                             }
-
                                         }
                                     },
                                     example: {
@@ -334,12 +302,25 @@ const options = {
                     },
                 },
             },
-            '/updatestudent': {
+            '/updatestudent/{id}': {
                 put: {
                     tags: ['USER'],
                     summary: 'Update data Based On User Id',
                     description: 'This API is used to update user data based on user Id',
-                    "requestBody": {
+                    parameters: [
+                        {
+                            name: 'id',
+                            in: 'path',
+                            schema: {
+                                type: 'string',
+                                example: '67ac8429120f599aff8f23ee',
+                                description: 'STUDENT ID'
+                            },
+                            required: true,
+                            description: 'User ID parameter'
+                        }
+                    ],
+                    requestBody: {
                         required: true,
                         content: {
                             'application/json': {
@@ -348,17 +329,17 @@ const options = {
                                     properties: {
                                         name: {
                                             type: 'string',
-                                            example: 'Parshwanath',
+                                            example: 'Updated First Name',
                                             description: 'Updated first name of the user'
                                         },
                                         student_id: {
                                             type: 'string',
-                                            example: 'sndnd123',
+                                            example: 'Updated Last Name',
                                             description: 'Updated student id of the user'
                                         },
                                         school_name: {
                                             type: 'string',
-                                            example: 'ckdskbcks',
+                                            example: 'updatedemail@example.com',
                                             description: 'Updated school name of the user'
                                         },
                                         phone_number: {
@@ -376,9 +357,9 @@ const options = {
                             description: 'Success',
                             content: {
                                 'application/json': {
-                                    // example: {
-                                    //     message: 'User updated successfully'
-                                    // },
+                                    example: {
+                                        message: 'User updated successfully'
+                                    },
                                     schema: {
                                         type: 'object'
                                     },
@@ -432,7 +413,7 @@ const options = {
                     }
                 }
             },
-            '/deletestudent/{id}': {
+            '//deletestudent/{id}': {
                 delete: {
                     tags: ['USER'],
                     summary: 'Delete a student',
@@ -478,13 +459,7 @@ const options = {
     apis: ['./index.js'], // Path to the file where the API is defined
 };
 
-{
-    {
-        {
 
-        }
-    }
-}
 const swaggerDocs = swaggerJsDoc(options); // swaggerJsDoc should be called as a function
 
 module.exports = { swaggerDocs }; // This correctly exports the generated Swagger documentation
