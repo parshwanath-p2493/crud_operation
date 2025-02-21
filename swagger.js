@@ -334,103 +334,211 @@ const options = {
                     },
                 },
             },
-            '/updatestudent': {
-                put: {
-                    tags: ['USER'],
-                    summary: 'Update data Based On User Id',
-                    description: 'This API is used to update user data based on user Id',
+            // '/updatestudent/{id}': {
+            //     put: {
+            //         tags: ['USER'],
+            //         summary: 'Update data Based On User Id',
+            //         description: 'This API is used to update user data based on user Id',
+            //         parameters: [
+            //             {
+            //                 name: 'id',
+            //                 in: 'path',
+            //                 required: true,
+            //                 description: ' UNIQUE ID of the student to retrieve',
+            //                 schema: {
+            //                     type: 'string',
+            //                 },
+            //             },
+            //         ],
+            //         requestBody: {
+            //             required: true,
+            //             content: {
+            //                 'application/json': {
+            //                     schema: {
+            //                         type: 'object',
+            //                         properties: {
+            //                             name: {
+            //                                 type: 'string',
+            //                                 example: 'Parshwanath',
+            //                                 description: 'Updated first name of the user'
+            //                             },
+            //                             student_id: {
+            //                                 type: 'string',
+            //                                 example: 'sndnd123',
+            //                                 description: 'Updated student id of the user'
+            //                             },
+            //                             school_name: {
+            //                                 type: 'string',
+            //                                 example: 'ckdskbcks',
+            //                                 description: 'Updated school name of the user'
+            //                             },
+            //                             phone_number: {
+            //                                 type: 'number',
+            //                                 example: 9876543210,
+            //                                 description: 'Updated mobile number of the user'
+            //                             }
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         },
+            //         responses: {
+            //             '200': {
+            //                 description: 'Success',
+            //                 content: {
+            //                     'application/json': {
+            //                         example: {
+            //                             message: 'User updated successfully',
+            //                             data:{
+            //                                 name: "Jane Smith",
+            //                                 student_id: "6789asd",
+            //                                 school_name: "ABC School",
+            //                                 phone_number: "987654321"
+            //                             }
+            //                         },
+            //                         // schema: {
+            //                         //     type: 'object'
+            //                         // },
+            //                         // properties: {
+            //                         //     name: {
+            //                         //         type: 'string',
+            //                         //         example: 'Updated First Name',
+            //                         //         description: 'Updated first name of the user'
+            //                         //     },
+            //                         //     student_id: {
+            //                         //         type: 'string',
+            //                         //         example: 'Updated Last Name',
+            //                         //         description: 'Updated student id of the user'
+            //                         //     },
+            //                         //     school_name: {
+            //                         //         type: 'string',
+            //                         //         example: 'updatedemail@example.com',
+            //                         //         description: 'Updated school name of the user'
+            //                         //     },
+            //                         //     phone_number: {
+            //                         //         type: 'number',
+            //                         //         example: 9876543210,
+            //                         //         description: 'Updated mobile number of the user'
+            //                         //     }
+            //                         // }
+            //                     }
+            //                 }
+            //             },
+            //             '404': {
+            //                 description: 'User not Found',
+            //                 content: {
+            //                     'application/json': {
+            //                         example: {
+            //                             message: 'User not found',
+            //                             error: 'User not found'
+            //                         }
+            //                     }
+            //                 }
+            //             },
+            //             '500': {
+            //                 description: 'Server Side Issue',
+            //                 content: {
+            //                     'application/json': {
+            //                         example: {
+            //                             message: 'Internal Server Error',
+            //                             error: 'Something went wrong'
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // },
+
+            "/updatestudent/{id}": {
+                "put": {
+                    "tags": ["USER"],
+                    "summary": "Update a student's data by ID",
+                    "description": "This API is used to update a student's details based on their ID",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "required": true,
+                            "description": "ID of the student to update",
+                            "schema": {
+                                "type": "string",
+                                "example": "12345"
+                            }
+                        }
+                    ],
                     "requestBody": {
-                        required: true,
-                        content: {
-                            'application/json': {
-                                schema: {
-                                    type: 'object',
-                                    properties: {
-                                        name: {
-                                            type: 'string',
-                                            example: 'Parshwanath',
-                                            description: 'Updated first name of the user'
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Jane Smith",
+                                            "description": "Updated name"
                                         },
-                                        student_id: {
-                                            type: 'string',
-                                            example: 'sndnd123',
-                                            description: 'Updated student id of the user'
+                                        "student_id": {
+                                            "type": "string",
+                                            "example": "6789asd",
+                                            "description": "Updated student ID"
                                         },
-                                        school_name: {
-                                            type: 'string',
-                                            example: 'ckdskbcks',
-                                            description: 'Updated school name of the user'
+                                        "school_name": {
+                                            "type": "string",
+                                            "example": "ABC School",
+                                            "description": "Updated school name"
                                         },
-                                        phone_number: {
-                                            type: 'number',
-                                            example: 9876543210,
-                                            description: 'Updated mobile number of the user'
+                                        "phone_number": {
+                                            "type": "string",
+                                            "example": "987654321",
+                                            "description": "Updated phone number"
                                         }
                                     }
                                 }
                             }
                         }
                     },
-                    responses: {
-                        '200': {
-                            description: 'Success',
-                            content: {
-                                'application/json': {
-                                    // example: {
-                                    //     message: 'User updated successfully'
-                                    // },
-                                    schema: {
-                                        type: 'object'
-                                    },
-                                    properties: {
-                                        name: {
-                                            type: 'string',
-                                            example: 'Updated First Name',
-                                            description: 'Updated first name of the user'
-                                        },
-                                        student_id: {
-                                            type: 'string',
-                                            example: 'Updated Last Name',
-                                            description: 'Updated student id of the user'
-                                        },
-                                        school_name: {
-                                            type: 'string',
-                                            example: 'updatedemail@example.com',
-                                            description: 'Updated school name of the user'
-                                        },
-                                        phone_number: {
-                                            type: 'number',
-                                            example: 9876543210,
-                                            description: 'Updated mobile number of the user'
+                    "responses": {
+                        "200": {
+                            "description": "Successfully updated the student",
+                            "content": {
+                                "application/json": {
+                                    "example": {
+                                        "message": "Successfully updated the student",
+                                        "data": {
+                                            "name": "Jane Smith",
+                                            "student_id": "6789asd",
+                                            "school_name": "ABC School",
+                                            "phone_number": "987654321"
                                         }
                                     }
                                 }
                             }
                         },
-                        '404': {
-                            description: 'User not Found',
-                            content: {
-                                'application/json': {
-                                    example: {
-                                        message: 'User not found',
-                                        error: 'User not found'
+                        "404": {
+                            "description": "Student not found",
+                            "content": {
+                                "application/json": {
+                                    "example": {
+                                        "message": "Student not found"
                                     }
                                 }
                             }
                         },
-                        '500': {
-                            description: 'Server Side Issue',
-                            content: {
-                                'application/json': {
-                                    example: {
-                                        message: 'Internal Server Error',
-                                        error: 'Something went wrong'
+                        "500": {
+                            "description": "Internal Server Error",
+                            "content": {
+                                "application/json": {
+                                    "example": {
+                                        "message": "Internal Server Error",
+                                        "error": "Something went wrong"
                                     }
                                 }
                             }
                         }
                     }
-                }
+                },
             },
             '/deletestudent/{id}': {
                 delete: {
@@ -478,13 +586,6 @@ const options = {
     apis: ['./index.js'], // Path to the file where the API is defined
 };
 
-{
-    {
-        {
-
-        }
-    }
-}
 const swaggerDocs = swaggerJsDoc(options); // swaggerJsDoc should be called as a function
 
 module.exports = { swaggerDocs }; // This correctly exports the generated Swagger documentation
