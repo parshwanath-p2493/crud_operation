@@ -4,8 +4,8 @@ const { schema } = require('./input');
 
 const options = {
     swaggerDefinition: {
-        swagger: "2.0",
-        //  openapi: "3.0.3",
+        //swagger: "2.0",
+        openapi: "3.0.3",
         info: {
             title: 'Student data  API',
             version: '56.0.0',
@@ -212,7 +212,7 @@ const options = {
                                     required: ['name', 'student_id', 'school_name', 'phone_number']
                                 },
                                 example: {
-                                    first_name: 'Smart',
+                                    name: 'Abhayy',
                                     student_id: '1DA21ET030',
                                     school_name: 'test@gmail.com',
                                     phone_number: 1234567890,
