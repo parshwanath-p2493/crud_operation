@@ -91,7 +91,7 @@ server.put('/updatestudent/:id', async function (req, res) {
         return res.json(updatestudent)
     }
     catch (error) {
-        res.json({ error: "Internal Server error" })
+        res.json({ error: "Internal Server error" }) 
     }
 
 })
