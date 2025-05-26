@@ -229,17 +229,6 @@ const options = {
                                     schema: {
                                         type: 'object',
                                         properties: {
-
-                                            // status: {
-                                            //     type: 'string',
-                                            //     example: 'Success',
-                                            //     description: 'New User Successfully created'
-                                            // },
-                                            // message: {
-                                            //     type: 'string',
-                                            //     example: 'New User Successfully created',
-                                            //     description: 'API success message'
-                                            // }
                                             name: {
                                                 type: 'string',
                                                 example: 'Smart',
