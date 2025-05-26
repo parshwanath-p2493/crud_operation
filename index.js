@@ -110,3 +110,6 @@ server.delete('/deletestudent/:id', async function (req, res) {
     }
 
 
+})
+
+server.use('/api_dox', swaggerui.serve, swaggerui.setup(swaggerDocs))
