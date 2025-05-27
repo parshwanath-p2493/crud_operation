@@ -567,3 +567,14 @@ const options = {
                 },
             }
 
+        },
+
+        // basePath: '/', // Set the base path
+        schemes: ['http'], // Define the protocol (HTTP or HTTPS)
+    },
+    apis: ['./index.js'], // Path to the file where the API is defined
+};
+
+const swaggerDocs = swaggerJsDoc(options); // swaggerJsDoc should be called as a function
+
+module.exports = { swaggerDocs }; // This correctly exports the generated Swagger documentation
